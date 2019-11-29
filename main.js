@@ -1,10 +1,12 @@
 // Objectives
-// Each card should have a question about ES6 and a corresponding card for the answer to that question
-// Have the ability to show an answer to a card
-// Have the ability to add a card
-// Have the ability to edit a card
-// Have the ability to delete a card
-
+// Each card should have a question about ES6 and a corresponding card for the answer to that question - done
+// Have the ability to show an answer to a card - done
+// Have the ability to add a card - done
+// Have the ability to edit a card - done 
+// Have the ability to delete a card - done
+// bonus objectives
+// Use jQuery to make your site more interactive.
+// Use a grid (skeleton, materialize, bootstrap)
 
 // variables for HTML elemnts to pass Q/A's into
 const questionText = document.getElementById("questionText")
@@ -72,11 +74,10 @@ function adjustQuestion() {
   } else {
     return
   }
-
 }
 
-
-
-// bonus objectives
-// Use jQuery to make your site more interactive.
-// Use a grid (skeleton, materialize, bootstrap)
+// delete objects from array
+function deleteQuestion() {
+  dQ = myQuestions.findIndex(k => k.question == questionText.innerHTML)
+  myQuestions.splice(dQ, 1)
+}
