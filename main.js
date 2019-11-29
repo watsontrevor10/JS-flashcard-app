@@ -10,44 +10,27 @@
 const questionText = document.getElementById("questionText")
 const answerText = document.getElementById("answerText")
 // HTML to use for click functionality
-const newQuestion = document.getElementById("newQuestion")
+const nextQuestion = document.getElementById("nextQuestion")
 const viewAnswer = document.getElementById("viewAnswer")
 
-// defining questions and answers in quiz format
-// starting without possible answers functions, then add possible answers when other stuff is working
+// defining questions and answers
 let myQuestions = [
   {
     question: "What is ES6?",
-    answers: {
-      a: "A type of energy drink",
-      b: "A planet, discovered in 1989",
-      c: "A newer edition of Javascrip"
-    },
-    correctAnswer: "A new version of Javascript"
+    correctAnswer: "A newer version of Javascript"
   },
   {
     question: "Why would you want to use ES6?",
-    answers: {
-      a: "Because it's easier to spell",
-      b: "You wouldn't, Javascript is better",
-      c: "Because ES6 is easier"
-    },
     correctAnswer: "Because ES6 is easier"
   },
   {
     question: "Who is the greatest of all time?",
-    answers: {
-      a: "Trevor Watson",
-      b: "Bob Marley",
-      c: "Michael Jordan",
-      d: "False, no one is the greatest of all time"
-    },
     correctAnswer: "No one is the greatest of all time"
   }
 ];
 
 
-newQuestion.addEventListener("click", () => {
+nextQuestion.addEventListener("click", () => {
   // grab a random index from within myQuestions object
   const keys = Object.keys(myQuestions);
   const randomIndex = keys[Math.floor(Math.random() * keys.length)];
@@ -59,6 +42,38 @@ newQuestion.addEventListener("click", () => {
     answerText.innerHTML = item.correctAnswer
   })
 })
+
+// prompt to add new question/answer to array
+function newQuestion() {
+  let addQuestion = prompt("Add Question", "default question")
+  let addAnswer = prompt("Add Answer", "default answer")
+
+  if (addQuestion != null && addAnswer != null) {
+    myQuestions.push({
+      'question': addQuestion,
+      'correctAnswer': addAnswer
+  })
+  }
+}
+
+// prompt to edit current question and answer
+function adjustQuestion() {
+  let editQuestion = prompt(questionText.innerHTML, questionText.innerHTML)
+  let editAnswer = prompt(answerText.innerHTML, answerText.innerHTML)
+  
+  // edit myQuestions array with user input
+  if (editQuestion !== questionText.innerHTML) {
+    myQuestions.find(v => v.question == questionText.innerHTML).question = editQuestion;
+  } else {
+    return
+  }
+  if (editAnswer !== answerText.innerHTML) {
+    myQuestions.find(v => v.correctAnswer == answerText.innerHTML).correctAnswer = editAnswer;
+  } else {
+    return
+  }
+
+}
 
 
 
